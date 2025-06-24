@@ -2,22 +2,150 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact Form</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Contact Skope Designs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --skope-blue: #00B0FF;
+      --skope-orange: #FF6D00;
+      --skope-black: #1E1E1E;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+      color: var(--skope-black);
+    }
+
+    form {
+      background-color: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    form h2 {
+      color: var(--skope-blue);
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    label {
+      display: block;
+      margin-top: 16px;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--skope-blue);
+      outline: none;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    input[type="submit"] {
+      background: var(--skope-orange);
+      color: #fff;
+      font-weight: 600;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 20px;
+      width: 100%;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background: var(--skope-black);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+
+  <script type="text/javascript">
+    (function () {
+      emailjs.init({
+        publicKey: "z2xyFEGg9wuCFrNPa", 
+      });
+    })();
+
+    window.onload = function () {
+      document.getElementById('contact-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        emailjs.sendForm('contact_service', 'contact_form', this)
+          .then(() => {
+            alert("Message sent successfully!");
+            this.reset();
+          }, (error) => {
+            alert("Failed to send message. Please try again.");
+            console.log('FAILED...', error);
+          });
+      });
+    }
+  </script>
 </head>
 <body>
-  <div class="contact-container">
-    <form class="contact-form" id="contactForm" method="POST" action="send.php">
-      <h2>Contact Us</h2>
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" required></textarea>
-      <button type="submit">Send</button>
-      <div class="alert" id="alertMsg" style="display:none;">Message sent</div>
-    </form>
-  </div>
-  <script src="script.js"></script>
-  <style src="style.css"></style>
+
+  <form id="contact-form">
+    <h2>Contact Skope Designs</h2>
+    <input type="hidden" name="time" value="Mar 10 2025 08:46">
+
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" required>
+
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" required>
+
+    <label for="title">Subject</label>
+    <input type="text" name="title" id="title" required>
+
+    <label for="message">Message</label>
+    <textarea name="message" id="message" required></textarea>
+
+    <input type="submit" value="Send Message">
+  </form>
+
 </body>
 </html>
