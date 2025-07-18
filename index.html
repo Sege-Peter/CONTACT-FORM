@@ -6,7 +6,7 @@
   <title>Hope Rekindled Initiative - Empowering Young People</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
-<link rel="icon" href="HRI LOGO.png" type="image/png">
+<link rel="icon" href="HRI FAV.png" type="image/png">
 
 
   <style>
@@ -346,36 +346,6 @@ footer {
         font-size: 1.5rem;
       }
     }
-    /* Chat Toggle Button Styles */
-    #chat-toggle {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      z-index: 9999;
-      background-color: #f97316;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      font-size: 28px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      cursor: pointer;
-    }
-
-    /* Chatbot Floating Container Styles */
-    #chatbot-container {
-      position: fixed;
-      bottom: 95px;
-      right: 25px;
-      width: 350px;
-      height: 500px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      border-radius: 12px;
-      overflow: hidden;
-      display: none;
-      z-index: 9998;
-    }
   </style>
 </head>
 
@@ -423,21 +393,45 @@ footer {
           <a href="https://www.instagram.com/hoperekindledinitiative?igsh=aHJ2MGtqNm9tcnU1" target="_blank" aria-label="Instagram"><i class="fab fa-instagram text-pink-500 hover:text-pink-600"></i></a>
         <a href="https://web.facebook.com/HopeRekindledInitiative?mibextid=ZbWKwL&_rdc=1&_rdr#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook text-blue-600 hover:text-blue-700"></i></a>
         <a href="https://www.linkedin.com/company/hoperekindledinitiative/posts/?feedView=all" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin text-blue-800 hover:text-blue-900"></i></a>
-<button id="chat-toggle">
-  💬
-</button>
+        <a href="https://x.com/HopeRekindledIn?t=5iMJ_Hfa80Mi2_PuGRzwcg&s=08" target="_blank" aria-label="Twitter"><i class="fab fa-twitter text-blue-500 hover:text-blue-600"></i></a>
+        <a href="https://www.tiktok.com/@hoperekindledinitiative?_t=8moi0kkMxVe&_r=1" target="_blank" aria-label="TikTokr"><i class="fab fa-tiktok text-blue-500 hover:text-blue-600"></i></a>
+    </div>
+  </div>
+  <p>&copy; <span id="year"></span> Hope Rekindled Initiative. All rights reserved.</p>
+</footer>
 
-<!-- Chatbot Floating Container -->
-<div id="chatbot-container">
-  <iframe
-    src="https://www.chatbase.co/chatbot-iframe/wseuIJNNrQHKig7mfps1p"
-    width="100%"
-    height="100%"
-    style="border: none;"
-    frameborder="0"
-    allow="microphone; clipboard-write"
-  ></iframe>
-</div>
+
+<script>
+  const hamburger = document.querySelector('.hamburger-menu');
+  const menuItems = document.querySelector('.menu-items');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    menuItems.classList.toggle('active');
+    document.body.style.overflow = menuItems.classList.contains('active') ? 'hidden' : '';
+  });
+
+  document.querySelectorAll('.menu-items a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      menuItems.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+<!-- Chat Toggle Button -->
+<button id="chat-toggle" style="
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 9999;
+  background-color: #f97316;
+  color: white;
+  border: none;
+  border-radius: 50%;
   width: 60px;
   height: 60px;
   font-size: 28px;
