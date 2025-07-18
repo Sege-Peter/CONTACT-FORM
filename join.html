@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hope Rekindled Initiative - Empowering Young People</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="icon" href="HRI LOGO.png" type="image/png">
+
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    body {
+      line-height: 1.6;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: #fff;
+    }
+
+    .static-header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #0f9d58;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .static-header.scrolled {
+      padding: 0.5rem 2rem;
+      background-color: rgba(15, 157, 88, 0.95);
+      backdrop-filter: blur(5px);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-img {
+      height: 50px;
+      width: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .logo-img:hover {
+      transform: rotate(10deg);
+    }
+
+    .logo-text {
+      font-size: 1.2rem;
+      font-weight: bold;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .logo-text span {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: normal;
+      margin-top: 3px;
+    }
+
+    .hamburger-menu {
+      cursor: pointer;
+      width: 30px;
+      height: 25px;
+      position: relative;
+      z-index: 1001;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hamburger-menu span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background: white;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger-menu.active span:nth-child(1) {
+      transform: translateY(11px) rotate(45deg);
+    }
+
+    .hamburger-menu.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger-menu.active span:nth-child(3) {
+      transform: translateY(-11px) rotate(-45deg);
+    }
+
+    .menu-items {
+      position: fixed;
+      top: 70px;
+      right: -100%;
+      width: 220px;
+      height: auto;
+      max-height: 90vh;
+      background-color: #0f9d58;
+      transition: all 0.5s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 1rem;
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .menu-items.active {
+      right: 0;
+    }
+
+    .menu-items li {
+      list-style: none;
+      margin: 1rem 0;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: all 0.4s ease;
+    }
+
+    .menu-items.active li {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .menu-items a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 0.6rem 1rem;
+      display: block;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .menu-items a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #f57c00;
+      transition: width 0.3s ease;
+    }
+
+    .menu-items a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: translateX(5px);
+    }
+
+    .menu-items a:hover::before {
+      width: 100%;
+    }
+
+   
+
+    .btn-primary {
+      background-color: #f57c00;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #e66b00;
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-tertiary {
+      background-color: #0f9d58;
+      color: white;
+    }
+
+    .btn-tertiary:hover {
+      background-color: #0a7f46;
+    }
+
+    .content {
+      padding: 4rem 2rem;
+      margin-top: 82px;
+      flex: 1;
+    }
+
+footer {
+  background-color: #0f9d58;
+  color: white;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column; /* Stacked on mobile */
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* Desktop view: Flat layout */
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row; /* Horizontal on desktop */
+    justify-content: space-between;
+    text-align: left;
+    align-items: flex-start;
+  }
+}
+
+
+    .social-links {
+      display: flex;
+      gap: 1.8rem;
+    }
+
+    .social-links a {
+      color: white;
+      font-size: 1.8rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .social-links a:hover {
+      color: #f57c00;
+    }
+
+    @media (min-width: 768px) {
+      .hamburger-menu {
+        display: none;
+      }
+
+      .menu-items {
+        position: static;
+        width: auto;
+        height: auto;
+        background-color: transparent;
+        flex-direction: row;
+        padding: 0;
+        box-shadow: none;
+        right: auto;
+      }
+
+      .menu-items li {
+        opacity: 1;
+        transform: none;
+        margin: 0 0.8rem;
+      }
+
+      .menu-items a {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .hero h1 {
+        font-size: 4rem;
+      }
+
+      .hero p {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Optional: Tailwind Custom Config (if needed) -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          animation: {
+            'fade-in-up': 'fadeInUp 0.8s ease-out',
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body>
+
+<header class="static-header">
+  <div class="logo-container">
+    <img src="HRI LOGO.png" alt="Hope Rekindled Initiative Logo" class="logo-img" />
+    <div class="logo-text">
+      Hope Rekindled Initiative
+      <span>Empowering Young People</span>
+    </div>
+  </div>
+  <nav>
+    <div class="hamburger-menu">
+      <span></span><span></span><span></span>
+    </div>
+    <ul class="menu-items">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="programs.html">Programs</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+<br>
+<!-- Join Us Section -->
+<section class="bg-gray-100 py-16 px-4 fade-in-up">
+  <div class="max-w-7xl mx-auto text-center">
+    <h2 class="text-4xl font-bold text-gray-800 mb-4">Join Us</h2>
+    <p class="text-lg text-gray-600 mb-12 max-w-3xl mx-auto">
+      Be part of a growing movement to empower communities, uplift youth, and create sustainable impact. Whether you're a student, professional, or organization — there's a place for you at Hope Rekindled Initiative.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- Volunteer Card -->
+      <div class="bg-white p-8 rounded-2xl shadow-xl transform hover:scale-105 transition-all duration-300 animate-fadeInUp">
+        <div class="text-indigo-600 text-5xl mb-4">
+          <i class="fa-solid fa-handshake-angle"></i>
+        </div>
+        <h4 class="text-xl font-semibold text-gray-800 mb-2">Become a Volunteer</h4>
+        <p class="text-gray-600 mb-4">
+          Use your time and talents to transform lives through mentorship, field work, events, and community outreach programs.
+        </p>
+        <a href="mailto:info@hoperekindledinitiative.org" class="inline-block bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition">Join as Volunteer</a>
+      </div>
+
+      <!-- Partner Card -->
+      <div class="bg-white p-8 rounded-2xl shadow-xl transform hover:scale-105 transition-all duration-300 animate-fadeInUp delay-100">
+        <div class="text-emerald-600 text-5xl mb-4">
+          <i class="fa-solid fa-people-group"></i>
+        </div>
+        <h4 class="text-xl font-semibold text-gray-800 mb-2">Partner With Us</h4>
+        <p class="text-gray-600 mb-4">
+          We welcome collaborations with organizations, institutions, and individuals that share our vision for a better future.
+        </p>
+        <a href="mailto:info@hoperekindledinitiative.org" class="inline-block bg-emerald-600 text-white px-5 py-2 rounded-full hover:bg-emerald-700 transition">Propose Partnership</a>
+      </div>
+
+      <!-- Donate Card -->
+      <div class="bg-white p-8 rounded-2xl shadow-xl transform hover:scale-105 transition-all duration-300 animate-fadeInUp delay-200">
+        <div class="text-pink-600 text-5xl mb-4">
+          <i class="fa-solid fa-heart-circle-plus"></i>
+        </div>
+        <h4 class="text-xl font-semibold text-gray-800 mb-2">Support a Cause</h4>
+        <p class="text-gray-600 mb-4">
+          Make a financial gift or donate resources. Every contribution brings us closer to a more equitable, healthier society.
+        </p>
+        <a href="donate.html" class="inline-block bg-pink-600 text-white px-5 py-2 rounded-full hover:bg-pink-700 transition">Donate Now</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="footer-content">
+    <div class="logo-text">Hope Rekindled Initiative<span>Empowering Young People</span></div>
+    <div class="social-links">
+          <a href="https://www.instagram.com/hoperekindledinitiative?igsh=aHJ2MGtqNm9tcnU1" target="_blank" aria-label="Instagram"><i class="fab fa-instagram  hover:text-pink-600"></i></a>
+        <a href="https://web.facebook.com/HopeRekindledInitiative?mibextid=ZbWKwL&_rdc=1&_rdr#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook  hover:text-blue-700"></i></a>
+        <a href="https://www.linkedin.com/company/hoperekindledinitiative/posts/?feedView=all" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin  hover:text-blue-900"></i></a>
+        <a href="https://x.com/HopeRekindledIn?t=5iMJ_Hfa80Mi2_PuGRzwcg&s=08" target="_blank" aria-label="Twitter"><i class="fab fa-twitter -500 hover:text-blue-600"></i></a>
+        <a href="https://www.tiktok.com/@hoperekindledinitiative?_t=8moi0kkMxVe&_r=1" target="_blank" aria-label="TikTokr"><i class="fab fa-tiktok  hover:text-blue-600"></i></a>
+    </div>
+  </div>
+  <p>&copy; <span id="year"></span> Hope Rekindled Initiative. All rights reserved.</p>
+</footer>
+
+
+
+<script>
+  const hamburger = document.querySelector('.hamburger-menu');
+  const menuItems = document.querySelector('.menu-items');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    menuItems.classList.toggle('active');
+    document.body.style.overflow = menuItems.classList.contains('active') ? 'hidden' : '';
+  });
+
+  document.querySelectorAll('.menu-items a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      menuItems.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+<!-- Chat Toggle Button -->
+<button id="chat-toggle" style="
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 9999;
+  background-color: #f97316;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 28px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  cursor: pointer;">
+  💬
+</button>
+
+<!-- Chatbot Floating Container -->
+<div id="chatbot-container" style="
+  position: fixed;
+  bottom: 95px;
+  right: 25px;
+  width: 350px;
+  height: 500px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  display: none;
+  z-index: 9998;
+">
+  <iframe
+    src="https://www.chatbase.co/chatbot-iframe/wseuIJNNrQHKig7mfps1p"
+    width="100%"
+    height="100%"
+    style="border: none;"
+    frameborder="0"
+    allow="microphone; clipboard-write"
+  ></iframe>
+</div>
+
+<!-- Show/Hide Chatbot Script -->
+<script>
+  const toggle = document.getElementById('chat-toggle');
+  const container = document.getElementById('chatbot-container');
+
+  toggle.addEventListener('click', () => {
+    container.style.display = container.style.display === 'block' ? 'none' : 'block';
+  });
+</script>
+
+</html>

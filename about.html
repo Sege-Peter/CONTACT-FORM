@@ -1,817 +1,448 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hope Rekindled Initiative - Empowering Young People</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Reset and Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Open Sans', sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hope Rekindled Initiative - Empowering Young People</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="icon" href="HRI LOGO.png" type="image/png">
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<style>
+  .highlight { color: #f97316; }
+  .icon { color: #0f9d58; margin-right: 8px; }
+  .sdg-slide, .team-slide {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  .swiper-pagination-bullet-active { background-color: #0f9d58 !important; }
+</style>
 
-        body {
-            line-height: 1.6;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            background-color: #f8fafc;
-        }
 
-        /* Header Styles */
-        .static-header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #1E3A8A;
-            color: white;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+    }
 
-        .static-header.scrolled {
-            padding: 0.5rem 2rem;
-            background-color: rgba(30, 58, 138, 0.95);
-            backdrop-filter: blur(5px);
-        }
+    body {
+      line-height: 1.6;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: #fff;
+    }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+    .static-header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #0f9d58;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
 
-        .logo-img {
-            height: 50px;
-            width: auto;
-            transition: transform 0.3s ease;
-        }
+    .static-header.scrolled {
+      padding: 0.5rem 2rem;
+      background-color: rgba(15, 157, 88, 0.95);
+      backdrop-filter: blur(5px);
+    }
 
-        .logo-img:hover {
-            transform: rotate(10deg);
-        }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
 
-        .logo-text {
-            font-size: 1.2rem;
-            font-weight: bold;
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s ease;
-        }
+    .logo-img {
+      height: 50px;
+      width: auto;
+      transition: transform 0.3s ease;
+    }
 
-        .logo-text span {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: normal;
-            margin-top: 3px;
-            transition: all 0.3s ease;
-        }
+    .logo-img:hover {
+      transform: rotate(10deg);
+    }
 
-        /* Hamburger Menu Styles */
-        .hamburger-menu {
-            cursor: pointer;
-            width: 30px;
-            height: 25px;
-            position: relative;
-            z-index: 1001;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.3s ease;
-        }
+    .logo-text {
+      font-size: 1.2rem;
+      font-weight: bold;
+      font-family: 'Poppins', sans-serif;
+    }
 
-        .hamburger-menu span {
-            display: block;
-            height: 3px;
-            width: 100%;
-            background: white;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-            transform-origin: center;
-        }
+    .logo-text span {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: normal;
+      margin-top: 3px;
+    }
 
-        .hamburger-menu.active span:nth-child(1) {
-            transform: translateY(11px) rotate(45deg);
-        }
+    .hamburger-menu {
+      cursor: pointer;
+      width: 30px;
+      height: 25px;
+      position: relative;
+      z-index: 1001;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
-        .hamburger-menu.active span:nth-child(2) {
-            opacity: 0;
-        }
+    .hamburger-menu span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background: white;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
 
-        .hamburger-menu.active span:nth-child(3) {
-            transform: translateY(-11px) rotate(-45deg);
-        }
+    .hamburger-menu.active span:nth-child(1) {
+      transform: translateY(11px) rotate(45deg);
+    }
 
-        .menu-items {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 280px;
-            height: 100vh;
-            background-color: #1E3A8A;
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            display: flex;
-            flex-direction: column;
-            padding: 6rem 2rem 2rem;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
+    .hamburger-menu.active span:nth-child(2) {
+      opacity: 0;
+    }
 
-        .menu-items.active {
-            right: 0;
-        }
+    .hamburger-menu.active span:nth-child(3) {
+      transform: translateY(-11px) rotate(-45deg);
+    }
 
-        .menu-items li {
-            list-style: none;
-            margin: 1.5rem 0;
-            opacity: 0;
-            transform: translateX(20px);
-            transition: all 0.4s ease;
-        }
+    .menu-items {
+      position: fixed;
+      top: 70px;
+      right: -100%;
+      width: 220px;
+      height: auto;
+      max-height: 90vh;
+      background-color: #0f9d58;
+      transition: all 0.5s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 1rem;
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
 
-        .menu-items.active li {
-            opacity: 1;
-            transform: translateX(0);
-        }
+    .menu-items.active {
+      right: 0;
+    }
 
-        .menu-items.active li:nth-child(1) { transition-delay: 0.2s; }
-        .menu-items.active li:nth-child(2) { transition-delay: 0.3s; }
-        .menu-items.active li:nth-child(3) { transition-delay: 0.4s; }
-        .menu-items.active li:nth-child(4) { transition-delay: 0.5s; }
-        .menu-items.active li:nth-child(5) { transition-delay: 0.6s; }
+    .menu-items li {
+      list-style: none;
+      margin: 1rem 0;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: all 0.4s ease;
+    }
 
-        .menu-items a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            padding: 0.8rem 1rem;
-            display: block;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
+    .menu-items.active li {
+      opacity: 1;
+      transform: translateX(0);
+    }
 
-        .menu-items a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: #F97316;
-            transition: width 0.3s ease;
-        }
+    .menu-items a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 0.6rem 1rem;
+      display: block;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
 
-        .menu-items a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translateX(5px);
-        }
+    .menu-items a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #f57c00;
+      transition: width 0.3s ease;
+    }
 
-        .menu-items a:hover::before {
-            width: 100%;
-        }
+    .menu-items a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: translateX(5px);
+    }
 
-        /* Hero Section Styles */
-        .hero {
-            height: 100vh;
-            background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            margin-top: 82px;
-        }
+    .menu-items a:hover::before {
+      width: 100%;
+    }
 
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 0 1rem;
-            animation: fadeIn 1.5s ease;
-        }
+   
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+    .btn-primary {
+      background-color: #f57c00;
+      color: white;
+    }
 
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            font-family: 'Poppins', sans-serif;
-            max-width: 800px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            animation: slideUp 1s ease;
-        }
+    .btn-primary:hover {
+      background-color: #e66b00;
+    }
 
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-            animation: slideUp 1s ease 0.2s forwards;
-            opacity: 0;
-        }
+    .btn-secondary {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+    }
 
-        @keyframes slideUp {
-            from { 
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
 
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            animation: slideUp 1s ease 0.4s forwards;
-            opacity: 0;
-        }
+    .btn-tertiary {
+      background-color: #0f9d58;
+      color: white;
+    }
 
-        .btn-primary, .btn-secondary, .btn-tertiary {
-            padding: 0.9rem 1.8rem;
-            border-radius: 6px;
-            font-weight: bold;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            min-width: 160px;
-            text-align: center;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
+    .btn-tertiary:hover {
+      background-color: #0a7f46;
+    }
 
-        .btn-primary {
-            background-color: #F97316;
-            color: white;
-        }
+    .content {
+      padding: 4rem 2rem;
+      margin-top: 82px;
+      flex: 1;
+    }
 
-        .btn-primary:hover {
-            background-color: #e06a14;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .btn-tertiary {
-            background-color: #10B981;
-            color: white;
-        }
-
-        .btn-tertiary:hover {
-            background-color: #0D9F6E;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Content Padding */
-        .content {
-            padding: 4rem 2rem;
-            margin-top: 82px;
-            flex: 1;
-            animation: fadeInContent 1s ease 0.6s forwards;
-            opacity: 0;
-        }
-
-        @keyframes fadeInContent {
-            to { opacity: 1; }
-        }
-
-        /* Footer Styles */
-        footer {
-            background-color: #1E3A8A;
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.8rem;
-            justify-content: center;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 1.8rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .social-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: #F97316;
-            transition: width 0.3s ease;
-        }
-
-        .social-links a:hover {
-            transform: translateY(-5px) scale(1.1);
-            color: #F97316;
-        }
-
-        .social-links a:hover::after {
-            width: 100%;
-        }
-
-        .copyright {
-            margin-top: 2rem;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        /* Responsive Styles */
-        @media (min-width: 768px) {
-            .hamburger-menu {
-                display: none;
-            }
-
-            .menu-items {
-                position: static;
-                width: auto;
-                height: auto;
-                background-color: transparent;
-                flex-direction: row;
-                padding: 0;
-                box-shadow: none;
-                right: auto;
-            }
-
-            .menu-items li {
-                opacity: 1;
-                transform: none;
-                margin: 0 0.8rem;
-            }
-
-            .menu-items a {
-                font-size: 1rem;
-                padding: 0.5rem 1rem;
-            }
-
-            .menu-items a:hover {
-                transform: translateY(-3px);
-            }
-
-            .logo-text {
-                font-size: 1.5rem;
-            }
-
-            .logo-text span {
-                font-size: 0.9rem;
-            }
-
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-
-            .hero p {
-                font-size: 1.5rem;
-            }
-
-            .footer-content {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .hero h1 {
-                font-size: 4rem;
-            }
-        }
-      /* Responsive Design for About Section */
-        /* Base Styles */
-.about-section {
-  padding: 4rem 1.5rem;
-  background: #f8fafc;
-  font-family: 'Poppins', sans-serif;
+footer {
+  background-color: #0f9d58;
+  color: white;
+  padding: 3rem 2rem;
+  text-align: center;
 }
 
-.container {
+.footer-content {
   max-width: 1200px;
   margin: 0 auto;
-}
-
-h2, h3 {
-  text-align: center;
-  color: #1e3a8a;
-  margin-bottom: 1.5rem;
-}
-
-.highlight {
-  color: #f97316;
-}
-
-.icon {
-  color: #f97316;
-  margin-right: 8px;
-}
-
-p {
-  color: #475569;
-  line-height: 1.6;
-}
-
-/* Intro Sections */
-.story-section,
-.core-section,
-.sdgs,
-.approach,
-.board-section {
-  margin-bottom: 2.5rem;
-}
-
-.story-section p,
-.sdgs p {
-  max-width: 900px;
-  margin: auto;
-  text-align: center;
-  font-size: 1.05rem;
-}
-
-/* Mission & Vision */
-.mission-vision {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  margin: 2rem 0;
-}
-
-@media (min-width: 768px) {
-  .mission-vision {
-    flex-direction: row;
-  }
-}
-
-.mission, .vision {
-  flex: 1;
-  background: #ffffff;
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-.mission h3, .vision h3 {
-  color: #f97316;
-}
-
-/* Core Values and Strategic Approach */
-.core-values, .approach ul, .board-list {
-  list-style: none;
-  padding: 0;
-  margin: 1rem auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  max-width: 800px;
-}
-
-@media (min-width: 600px) {
-  .core-values, .approach ul, .board-list {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.core-values li, .approach li, .board-list li {
-  padding-left: 1.5rem;
-  position: relative;
-  color: #475569;
-  font-size: 1.05rem;
-}
-
-.core-values li::before, .approach li::before, .board-list li::before {
-  content: "✔";
-  color: #f97316;
-  position: absolute;
-  left: 0;
-  font-weight: bold;
-}
-
-/* Team Section */
-.team-section {
-  margin-top: 3rem;
-}
-
-.team-grid {
-  display: grid;
-  grid-template-columns: 1fr;
+  flex-direction: column; /* Stacked on mobile */
+  align-items: center;
+  justify-content: center;
   gap: 2rem;
-  margin-top: 1rem;
 }
 
+/* Desktop view: Flat layout */
 @media (min-width: 768px) {
-  .team-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.team-member {
-  background: #ffffff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease;
-}
-
-.team-member:hover {
-  transform: translateY(-5px);
-}
-
-.photo-placeholder {
-  background: url('https://via.placeholder.com/300x200') no-repeat center center;
-  background-size: cover;
-  height: 200px;
-  border-radius: 8px 8px 0 0;
-}
-
-.member-info {
-  padding: 1.2rem;
-  text-align: center;
-}
-
-.member-info h4 {
-  color: #1e3a8a;
-  font-weight: 600;
-  margin-bottom: 0.2rem;
-}
-
-.member-info p {
-  color: #64748b;
-  font-size: 0.95rem;
-  margin-bottom: 0.5rem;
-}
-
-blockquote {
-  font-style: italic;
-  color: #475569;
-  background: #f1f5f9;
-  padding: 0.75rem 1rem;
-  border-left: 4px solid #f97316;
-  border-radius: 5px;
-  margin-top: 0.75rem;
-  font-size: 0.95rem;
-}
-
-/* Animations */
-.fade-in {
-  opacity: 0;
-  animation: fadeIn 1s ease-out forwards;
-}
-
-.fade-in-delay {
-  opacity: 0;
-  animation: fadeIn 1s ease-out forwards;
-  animation-delay: 0.3s;
-}
-
-.slide-up {
-  transform: translateY(20px);
-  opacity: 0;
-  animation: slideUp 1s ease forwards;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideUp {
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Mobile Text Alignment */
-@media (max-width: 600px) {
-  .member-info, .story-section p, .sdgs p, blockquote {
+  .footer-content {
+    flex-direction: row; /* Horizontal on desktop */
+    justify-content: space-between;
     text-align: left;
+    align-items: flex-start;
   }
 }
-        /* Footer Styles */
-        footer {
-            background-color: #1E3A8A;
-            color: white;
-            padding: 2rem 1.5rem;
-            text-align: center;
-        }
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-        }
 
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-        }
+    .social-links {
+      display: flex;
+      gap: 1.8rem;
+    }
 
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-        }
+    .social-links a {
+      color: white;
+      font-size: 1.8rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
 
-        .social-links a:hover {
-            color: #F97316;
-        }
-        
-    </style>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    .social-links a:hover {
+      color: #f57c00;
+    }
 
+    @media (min-width: 768px) {
+      .hamburger-menu {
+        display: none;
+      }
+
+      .menu-items {
+        position: static;
+        width: auto;
+        height: auto;
+        background-color: transparent;
+        flex-direction: row;
+        padding: 0;
+        box-shadow: none;
+        right: auto;
+      }
+
+      .menu-items li {
+        opacity: 1;
+        transform: none;
+        margin: 0 0.8rem;
+      }
+
+      .menu-items a {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .hero h1 {
+        font-size: 4rem;
+      }
+
+      .hero p {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
-<body>
-    <!-- Static Header -->
-    <header class="static-header">
-        <div class="logo-container">
-            <img src="HRI LOGO.png" alt="Hope Rekindled Initiative Logo" class="logo-img">
-            <div class="logo-text">
-                Hope Rekindled Initiative
-                <span>Empowering Young People</span>
-            </div>
-        </div>
-        <nav>
-            <div class="hamburger-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="menu-items">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="programs.html">Programs</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="resources.html">Resources</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-<br>
-<!-- About Us Section -->
-<section class="about-section">
-  <div class="container">
-    <h2 class="fade-in">About <span class="highlight">Hope Rekindled Initiative</span></h2>
 
-    <!-- Our Story -->
-    <div class="story-section fade-in-delay">
-      <h3><i class="fas fa-book-reader icon"></i> Our Story</h3>
+<body>
+
+<header class="static-header">
+  <div class="logo-container">
+    <img src="HRI LOGO.png" alt="Hope Rekindled Initiative Logo" class="logo-img" />
+    <div class="logo-text">
+      Hope Rekindled Initiative
+      <span>Empowering Young People</span>
+    </div>
+  </div>
+  <nav>
+    <div class="hamburger-menu">
+      <span></span><span></span><span></span>
+    </div>
+    <ul class="menu-items">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="programs.html">Programs</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!--ABOUT-->
+<!-- Link Swiper & Font Awesome -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+
+<section class="about-section" style="padding: 2rem; background-color: #f9f9f9;">
+  <div class="container" style="max-width: 1200px; margin: auto;">
+<br>
+<br>
+<br>
+    <!-- Heading -->
+    <h2 style="text-align: center; font-size: 2.2rem; margin-bottom: 2rem;">
+      About <span style="color: #0f9d58;">Hope Rekindled Initiative</span>
+    </h2>
+
+    <!-- Our Story Box -->
+    <div style="background: white; padding: 1.5rem; border-left: 6px solid #0f9d58; border-radius: 10px; margin-bottom: 2rem;">
+      <h3><i class="fas fa-book-reader"></i> Our Story</h3>
       <p>
-        <strong>Hope Rekindled Initiative (HRI)</strong> is a youth-led nonprofit founded in 2022 to tackle urgent challenges facing young people across Kenya. From <strong>mental health</strong>, <strong>SRHR</strong>, and <strong>menstrual hygiene</strong> to <strong>climate change</strong> and <strong>employment skills</strong>, we empower youth to become leaders of change. We believe in doing what we can, with what we have, where we are—rekindling hope every day.
+        <strong>Hope Rekindled Initiative (HRI)</strong> is founded on two principles: to be to be a youth-led and a youth-serving organization primarily to provide opportunities and equip youths to be active and strong agents of transformation in their communities. <strong> Established in 2022, HRI</strong> was born out of the pressing need to address systemic challenges facing youth with focus on healthcare issues around<strong> Mental Health, SRHR </strong>and <strong>MHM, limited civic engagement,</strong> growing vulnerability to climate-related shocks and limited access to skills for employment. Ultimately, <strong>HRI</strong> envisions youth at the forefront of advocating, promoting and taking a central role in realisation of communities’ social and economic rights.
       </p>
     </div>
 
     <!-- Mission & Vision -->
-    <div class="mission-vision slide-up">
-      <div class="mission">
-        <h3><i class="fas fa-bullseye icon"></i> Our Mission</h3>
-        <p>
-          To build the capacity of young people through civic engagement, health education, climate resilience, leadership development, and skills training for improved livelihoods and community well-being.
-        </p>
+    <div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-bottom: 2rem;">
+      <div style="flex: 1; min-width: 280px; background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+        <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+        <p>To build the capacity of young people through civic engagement, health education, leadership development, and climate resilience.</p>
       </div>
-      <div class="vision">
-        <h3><i class="fas fa-eye icon"></i> Our Vision</h3>
-        <p>
-          A just, healthy, and prosperous society where all youth are empowered to realize their full potential and contribute to sustainable development.
-        </p>
+      <div style="flex: 1; min-width: 280px; background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+        <h3><i class="fas fa-eye"></i> Our Vision</h3>
+        <p>A just, healthy, and prosperous society where all youth are empowered to realize their full potential.</p>
       </div>
     </div>
 
     <!-- Core Values -->
-    <div class="core-section fade-in-delay">
-      <h3><i class="fas fa-star icon"></i> Our Core Values</h3>
-      <ul class="core-values">
-        <li><i class="fas fa-user-friends"></i> Youth-Centeredness</li>
-        <li><i class="fas fa-balance-scale"></i> Integrity & Accountability</li>
-        <li><i class="fas fa-globe-africa"></i> Inclusivity & Diversity</li>
-        <li><i class="fas fa-hands-helping"></i> Collaboration & Innovation</li>
-        <li><i class="fas fa-leaf"></i> Sustainability</li>
+    <div style="background: white; padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem;">
+      <h3><i class="fas fa-star"></i> Core Values</h3>
+      <ul style="columns: 2; padding-left: 1rem; list-style: square; color: #0f9d58;">
+        <li>Youth-Centeredness</li>
+        <li>Integrity & Accountability</li>
+        <li>Inclusivity & Diversity</li>
+        <li>Collaboration & Innovation</li>
+        <li>Sustainability</li>
       </ul>
     </div>
 
-    <!-- SDG Focus -->
-    <div class="sdgs slide-up">
-      <h3><i class="fas fa-globe icon"></i> SDG Focus</h3>
-      <p>
-        Our programs align with the UN Sustainable Development Goals:
-        <br><strong>SDG 3, 4, 5, 8, 10, 13, 16</strong>—ensuring youth thrive in health, education, work, equity, peace, and a green future.
-      </p>
-    </div>
-
-    <!-- Approach -->
-    <div class="approach fade-in-delay">
-      <h3><i class="fas fa-lightbulb icon"></i> Our Strategic Approach</h3>
-      <ul>
-        <li>Youth-Led Programming</li>
-        <li>Community Engagement</li>
-        <li>Evidence-Based Interventions</li>
-        <li>Advocacy & Policy Influence</li>
-        <li>Multi-Sectoral Partnerships</li>
-      </ul>
-    </div>
-
-    <!-- Team -->
-    <div class="team-section slide-up">
-      <h3><i class="fas fa-users icon"></i> Meet Our Team</h3>
-      <div class="team-grid">
-        <div class="team-member">
-          <div class="photo-placeholder">Photo</div>
-          <div class="member-info">
-            <h4>Hawah Maria</h4>
-            <p>Chief Visionary Officer</p>
-            <blockquote>“At HRI, I live my purpose—empowering youth and transforming communities.”</blockquote>
-          </div>
+    <!-- SDG SLIDER -->
+    <div style="margin-top: 3rem;">
+      <h3><i class="fas fa-bullhorn"></i> Our Focus on the SDGs</h3>
+      <div class="swiper sdg-swiper" style="margin-top: 1rem;">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide sdg-slide">🎯 <strong>SDG 3:</strong> Good Health and Well-being</div>
+          <div class="swiper-slide sdg-slide">📘 <strong>SDG 4:</strong> Quality Education</div>
+          <div class="swiper-slide sdg-slide">♀️ <strong>SDG 5:</strong> Gender Equality</div>
+          <div class="swiper-slide sdg-slide">💼 <strong>SDG 8:</strong> Decent Work & Growth</div>
+          <div class="swiper-slide sdg-slide">🌍 <strong>SDG 13:</strong> Climate Action</div>
+          <div class="swiper-slide sdg-slide">🤝 <strong>SDG 17:</strong> Partnerships for the Goals</div>
         </div>
-        <div class="team-member">
-          <div class="photo-placeholder">Photo</div>
-          <div class="member-info">
-            <h4>Lamech Atula</h4>
-            <p>Pharmaceutical Technologist</p>
-            <blockquote>“HRI lets me give back meaningfully. We’re building futures together.”</blockquote>
-          </div>
-        </div>
-        <div class="team-member">
-          <div class="photo-placeholder">Photo</div>
-          <div class="member-info">
-            <h4>Sarah Nyawanda</h4>
-            <p>Sociologist</p>
-            <blockquote>“Whether you think you can or you think you can’t—you’re right.”</blockquote>
-          </div>
-        </div>
-        <div class="team-member">
-          <div class="photo-placeholder">Photo</div>
-          <div class="member-info">
-            <h4>Ali Griffin</h4>
-            <p>Youth Advocate</p>
-            <blockquote>“In every moment, I try to be the change I want to see.”</blockquote>
-          </div>
-        </div>
+        <div class="swiper-pagination"></div>
       </div>
     </div>
 
-    <!-- Board -->
-    <div class="board-section fade-in-delay">
-      <h3><i class="fas fa-briefcase icon"></i> Board of Directors</h3>
-      <ul class="board-list">
+    <!-- TEAM SLIDER -->
+    <div style="margin-top: 3rem;">
+      <h3><i class="fas fa-users"></i> Meet Our Team</h3>
+      <div class="swiper team-swiper" style="margin-top: 1rem;">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide team-slide">
+            <div class="team-card">
+              <h4>Hawah Maria</h4>
+              <p>Chief Visionary Officer</p>
+              <blockquote>“I live my purpose—empowering youth and transforming communities.”</blockquote>
+            </div>
+          </div>
+          <div class="swiper-slide team-slide">
+            <div class="team-card">
+              <h4>Lamech Atula</h4>
+              <p>Pharmaceutical Technologist</p>
+              <blockquote>“We’re building futures together.”</blockquote>
+            </div>
+          </div>
+          <div class="swiper-slide team-slide">
+            <div class="team-card">
+              <h4>Sarah Nyawanda</h4>
+              <p>Sociologist</p>
+              <blockquote>“Whether you think you can or can’t—you’re right.”</blockquote>
+            </div>
+          </div>
+          <div class="swiper-slide team-slide">
+            <div class="team-card">
+              <h4>Ali Griffin</h4>
+              <p>Youth Advocate</p>
+              <blockquote>“I try to be the change I want to see.”</blockquote>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+
+    <!-- Board of Directors -->
+    <div style="margin-top: 3rem; background: white; padding: 1.5rem; border-radius: 10px;">
+      <h3><i class="fas fa-briefcase"></i> Board of Directors</h3>
+      <ul style="list-style: disc; padding-left: 1.2rem; color: #0f9d58;">
         <li>Chairperson</li>
         <li>Advisor – Programs and Impact</li>
         <li>Advisor – Finance and Risk</li>
@@ -824,96 +455,155 @@ blockquote {
   </div>
 </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="logo-text">
-                Hope Rekindled Initiative
-                <span>Empowering Young People</span>
-            </div>
-            <div class="social-links">
-                <a href="https://www.instagram.com/hoperekindledinitiative?igsh=aHJ2MGtqNm9tcnU1" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://web.facebook.com/HopeRekindledInitiative?mibextid=ZbWKwL&_rdc=1&_rdr#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://x.com/HopeRekindledIn?t=5iMJ_Hfa80Mi2_PuGRzwcg&s=08" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            </div>
-        </div>
-        <div class="copyright">
-<p>&copy; <span id="year"></span> Hope Rekindled Initiative. All rights reserved.</p>
-        </div>
-    </footer>
+<!-- Additional Styles -->
+<style>
+  .sdg-slide,
+  .team-slide {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    border-left: 5px solid #ff6f00;
+  }
 
-    <script>
-        // Hamburger Menu Toggle
-        const hamburger = document.querySelector('.hamburger-menu');
-        const menuItems = document.querySelector('.menu-items');
-        
-        hamburger.addEventListener('click', function() {
-            this.classList.toggle('active');
-            menuItems.classList.toggle('active');
-            
-            // Toggle body overflow when menu is open
-            if (menuItems.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
-        });
+  .team-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    border: 3px solid #0f9d58;
+  }
 
-        // Close menu when clicking a link
-        document.querySelectorAll('.menu-items a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                menuItems.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        });
-                document.getElementById('year').textContent = new Date().getFullYear();
+  .team-card h4 {
+    margin-bottom: 0.2rem;
+    color: #0f9d58;
+  }
 
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.static-header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+  .team-card blockquote {
+    font-size: 0.9rem;
+    color: #444;
+    font-style: italic;
+    margin-top: 0.5rem;
+  }
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+  @media (max-width: 768px) {
+    .sdg-slide,
+    .team-slide {
+      font-size: 0.95rem;
+    }
+  }
+</style>
 
-        // Animation on scroll
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.content, .hero-buttons, .hero p, .hero h1');
-            
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                
-                if (elementPosition < screenPosition) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }
-            });
-        }
+<!-- Swiper JS Initialization -->
+<script>
+  new Swiper('.sdg-swiper', {
+    slidesPerView: 1.2,
+    spaceBetween: 15,
+    pagination: { el: '.swiper-pagination', clickable: true },
+    breakpoints: {
+      768: { slidesPerView: 3 },
+      1024: { slidesPerView: 4 },
+    },
+  });
 
-        // Run once on page load
-        window.addEventListener('load', animateOnScroll);
-        // Run on scroll
-        window.addEventListener('scroll', animateOnScroll);
-    </script>
+  new Swiper('.team-swiper', {
+    slidesPerView: 1.1,
+    spaceBetween: 15,
+    pagination: { el: '.swiper-pagination', clickable: true },
+    breakpoints: {
+      768: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 },
+    },
+  });
+</script>
+
+
+<footer>
+  <div class="footer-content">
+    <div class="logo-text">Hope Rekindled Initiative<span>Empowering Young People</span></div>
+    <div class="social-links">
+          <a href="https://www.instagram.com/hoperekindledinitiative?igsh=aHJ2MGtqNm9tcnU1" target="_blank" aria-label="Instagram"><i class="fab fa-instagram text-pink-500 hover:text-pink-600"></i></a>
+        <a href="https://web.facebook.com/HopeRekindledInitiative?mibextid=ZbWKwL&_rdc=1&_rdr#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook text-blue-600 hover:text-blue-700"></i></a>
+        <a href="https://www.linkedin.com/company/hoperekindledinitiative/posts/?feedView=all" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin text-blue-800 hover:text-blue-900"></i></a>
+        <a href="https://x.com/HopeRekindledIn?t=5iMJ_Hfa80Mi2_PuGRzwcg&s=08" target="_blank" aria-label="Twitter"><i class="fab fa-twitter text-blue-500 hover:text-blue-600"></i></a>
+        <a href="https://www.tiktok.com/@hoperekindledinitiative?_t=8moi0kkMxVe&_r=1" target="_blank" aria-label="TikTokr"><i class="fab fa-tiktok text-blue-500 hover:text-blue-600"></i></a>
+    </div>
+  </div>
+  <p>&copy; <span id="year"></span> Hope Rekindled Initiative. All rights reserved.</p>
+</footer>
+
+
+<script>
+  const hamburger = document.querySelector('.hamburger-menu');
+  const menuItems = document.querySelector('.menu-items');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    menuItems.classList.toggle('active');
+    document.body.style.overflow = menuItems.classList.contains('active') ? 'hidden' : '';
+  });
+
+  document.querySelectorAll('.menu-items a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      menuItems.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
 </body>
+<!-- Chat Toggle Button -->
+<button id="chat-toggle" style="
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 9999;
+  background-color: #f97316;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 28px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  cursor: pointer;">
+  💬
+</button>
+
+<!-- Chatbot Floating Container -->
+<div id="chatbot-container" style="
+  position: fixed;
+  bottom: 95px;
+  right: 25px;
+  width: 350px;
+  height: 500px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  display: none;
+  z-index: 9998;
+">
+  <iframe
+    src="https://www.chatbase.co/chatbot-iframe/wseuIJNNrQHKig7mfps1p"
+    width="100%"
+    height="100%"
+    style="border: none;"
+    frameborder="0"
+    allow="microphone; clipboard-write"
+  ></iframe>
+</div>
+
+<!-- Show/Hide Chatbot Script -->
+<script>
+  const toggle = document.getElementById('chat-toggle');
+  const container = document.getElementById('chatbot-container');
+
+  toggle.addEventListener('click', () => {
+    container.style.display = container.style.display === 'block' ? 'none' : 'block';
+  });
+</script>
+
 </html>

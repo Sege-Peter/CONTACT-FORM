@@ -1,517 +1,448 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hope Rekindled Initiative - Empowering Young People</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Reset and Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Open Sans', sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hope Rekindled Initiative - Empowering Young People</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="icon" href="HRI LOGO.png" type="image/png">
 
-        body {
-            line-height: 1.6;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            background-color: #f8fafc;
-        }
 
-        /* Header Styles */
-        .static-header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #1E3A8A;
-            color: white;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+    }
 
-        .static-header.scrolled {
-            padding: 0.5rem 2rem;
-            background-color: rgba(30, 58, 138, 0.95);
-            backdrop-filter: blur(5px);
-        }
+    body {
+      line-height: 1.6;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: #fff;
+    }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+    .static-header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #0f9d58;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
 
-        .logo-img {
-            height: 50px;
-            width: auto;
-            transition: transform 0.3s ease;
-        }
+    .static-header.scrolled {
+      padding: 0.5rem 2rem;
+      background-color: rgba(15, 157, 88, 0.95);
+      backdrop-filter: blur(5px);
+    }
 
-        .logo-img:hover {
-            transform: rotate(10deg);
-        }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
 
-        .logo-text {
-            font-size: 1.2rem;
-            font-weight: bold;
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s ease;
-        }
+    .logo-img {
+      height: 50px;
+      width: auto;
+      transition: transform 0.3s ease;
+    }
 
-        .logo-text span {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: normal;
-            margin-top: 3px;
-            transition: all 0.3s ease;
-        }
+    .logo-img:hover {
+      transform: rotate(10deg);
+    }
 
-        /* Hamburger Menu Styles */
-        .hamburger-menu {
-            cursor: pointer;
-            width: 30px;
-            height: 25px;
-            position: relative;
-            z-index: 1001;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.3s ease;
-        }
+    .logo-text {
+      font-size: 1.2rem;
+      font-weight: bold;
+      font-family: 'Poppins', sans-serif;
+    }
 
-        .hamburger-menu span {
-            display: block;
-            height: 3px;
-            width: 100%;
-            background: white;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-            transform-origin: center;
-        }
+    .logo-text span {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: normal;
+      margin-top: 3px;
+    }
 
-        .hamburger-menu.active span:nth-child(1) {
-            transform: translateY(11px) rotate(45deg);
-        }
+    .hamburger-menu {
+      cursor: pointer;
+      width: 30px;
+      height: 25px;
+      position: relative;
+      z-index: 1001;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
-        .hamburger-menu.active span:nth-child(2) {
-            opacity: 0;
-        }
+    .hamburger-menu span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background: white;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
 
-        .hamburger-menu.active span:nth-child(3) {
-            transform: translateY(-11px) rotate(-45deg);
-        }
+    .hamburger-menu.active span:nth-child(1) {
+      transform: translateY(11px) rotate(45deg);
+    }
 
-        .menu-items {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 280px;
-            height: 100vh;
-            background-color: #1E3A8A;
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            display: flex;
-            flex-direction: column;
-            padding: 6rem 2rem 2rem;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
+    .hamburger-menu.active span:nth-child(2) {
+      opacity: 0;
+    }
 
-        .menu-items.active {
-            right: 0;
-        }
+    .hamburger-menu.active span:nth-child(3) {
+      transform: translateY(-11px) rotate(-45deg);
+    }
 
-        .menu-items li {
-            list-style: none;
-            margin: 1.5rem 0;
-            opacity: 0;
-            transform: translateX(20px);
-            transition: all 0.4s ease;
-        }
+    .menu-items {
+      position: fixed;
+      top: 70px;
+      right: -100%;
+      width: 220px;
+      height: auto;
+      max-height: 90vh;
+      background-color: #0f9d58;
+      transition: all 0.5s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 1rem;
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
 
-        .menu-items.active li {
-            opacity: 1;
-            transform: translateX(0);
-        }
+    .menu-items.active {
+      right: 0;
+    }
 
-        .menu-items.active li:nth-child(1) { transition-delay: 0.2s; }
-        .menu-items.active li:nth-child(2) { transition-delay: 0.3s; }
-        .menu-items.active li:nth-child(3) { transition-delay: 0.4s; }
-        .menu-items.active li:nth-child(4) { transition-delay: 0.5s; }
-        .menu-items.active li:nth-child(5) { transition-delay: 0.6s; }
+    .menu-items li {
+      list-style: none;
+      margin: 1rem 0;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: all 0.4s ease;
+    }
 
-        .menu-items a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            padding: 0.8rem 1rem;
-            display: block;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
+    .menu-items.active li {
+      opacity: 1;
+      transform: translateX(0);
+    }
 
-        .menu-items a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: #F97316;
-            transition: width 0.3s ease;
-        }
+    .menu-items a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 0.6rem 1rem;
+      display: block;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
 
-        .menu-items a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translateX(5px);
-        }
+    .menu-items a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #f57c00;
+      transition: width 0.3s ease;
+    }
 
-        .menu-items a:hover::before {
-            width: 100%;
-        }
+    .menu-items a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: translateX(5px);
+    }
 
-        /* Hero Section Styles */
-        .hero {
-            height: 100vh;
-            background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            margin-top: 82px;
-        }
+    .menu-items a:hover::before {
+      width: 100%;
+    }
 
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 0 1rem;
-            animation: fadeIn 1.5s ease;
-        }
+    .hero {
+      height: 100vh;
+      background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      margin-top: 82px;
+      position: relative;
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 1rem;
+    }
 
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            font-family: 'Poppins', sans-serif;
-            max-width: 800px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            animation: slideUp 1s ease;
-        }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      font-family: 'Poppins', sans-serif;
+      max-width: 800px;
+    }
 
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-            animation: slideUp 1s ease 0.2s forwards;
-            opacity: 0;
-        }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
 
-        @keyframes slideUp {
-            from { 
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            animation: slideUp 1s ease 0.4s forwards;
-            opacity: 0;
-        }
+    .btn-primary, .btn-secondary, .btn-tertiary {
+      padding: 0.8rem 1.6rem;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      min-width: 140px;
+      text-align: center;
+      font-size: 1rem;
+    }
 
-        .btn-primary, .btn-secondary, .btn-tertiary {
-            padding: 0.9rem 1.8rem;
-            border-radius: 6px;
-            font-weight: bold;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            min-width: 160px;
-            text-align: center;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
+    .btn-primary {
+      background-color: #f57c00;
+      color: white;
+    }
 
-        .btn-primary {
-            background-color: #F97316;
-            color: white;
-        }
+    .btn-primary:hover {
+      background-color: #e66b00;
+    }
 
-        .btn-primary:hover {
-            background-color: #e06a14;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
+    .btn-secondary {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+    }
 
-        .btn-secondary {
-            background-color: transparent;
-            color: white;
-            border: 2px solid white;
-        }
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
 
-        .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
+    .btn-tertiary {
+      background-color: #0f9d58;
+      color: white;
+    }
 
-        .btn-tertiary {
-            background-color: #10B981;
-            color: white;
-        }
+    .btn-tertiary:hover {
+      background-color: #0a7f46;
+    }
 
-        .btn-tertiary:hover {
-            background-color: #0D9F6E;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
+    .content {
+      padding: 4rem 2rem;
+      margin-top: 82px;
+      flex: 1;
+    }
 
-        /* Content Padding */
-        .content {
-            padding: 4rem 2rem;
-            margin-top: 82px;
-            flex: 1;
-            animation: fadeInContent 1s ease 0.6s forwards;
-            opacity: 0;
-        }
+footer {
+  background-color: #0f9d58;
+  color: white;
+  padding: 3rem 2rem;
+  text-align: center;
+}
 
-        @keyframes fadeInContent {
-            to { opacity: 1; }
-        }
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column; /* Stacked on mobile */
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
 
-        /* Footer Styles */
-        footer {
-            background-color: #1E3A8A;
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
+/* Desktop view: Flat layout */
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row; /* Horizontal on desktop */
+    justify-content: space-between;
+    text-align: left;
+    align-items: flex-start;
+  }
+}
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-        }
 
-        .social-links {
-            display: flex;
-            gap: 1.8rem;
-            justify-content: center;
-        }
+    .social-links {
+      display: flex;
+      gap: 1.8rem;
+    }
 
-        .social-links a {
-            color: white;
-            font-size: 1.8rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
+    .social-links a {
+      color: white;
+      font-size: 1.8rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
 
-        .social-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: #F97316;
-            transition: width 0.3s ease;
-        }
+    .social-links a:hover {
+      color: #f57c00;
+    }
 
-        .social-links a:hover {
-            transform: translateY(-5px) scale(1.1);
-            color: #F97316;
-        }
+    @media (min-width: 768px) {
+      .hamburger-menu {
+        display: none;
+      }
 
-        .social-links a:hover::after {
-            width: 100%;
-        }
+      .menu-items {
+        position: static;
+        width: auto;
+        height: auto;
+        background-color: transparent;
+        flex-direction: row;
+        padding: 0;
+        box-shadow: none;
+        right: auto;
+      }
 
-        .copyright {
-            margin-top: 2rem;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
+      .menu-items li {
+        opacity: 1;
+        transform: none;
+        margin: 0 0.8rem;
+      }
 
-        /* Responsive Styles */
-        @media (min-width: 768px) {
-            .hamburger-menu {
-                display: none;
-            }
+      .menu-items a {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+      }
+    }
 
-            .menu-items {
-                position: static;
-                width: auto;
-                height: auto;
-                background-color: transparent;
-                flex-direction: row;
-                padding: 0;
-                box-shadow: none;
-                right: auto;
-            }
+    @media (min-width: 1024px) {
+      .hero h1 {
+        font-size: 4rem;
+      }
 
-            .menu-items li {
-                opacity: 1;
-                transform: none;
-                margin: 0 0.8rem;
-            }
+      .hero p {
+        font-size: 1.5rem;
+      }
+    }
+    /* Chat Toggle Button Styles */
+    #chat-toggle {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 9999;
+      background-color: #f97316;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 28px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
 
-            .menu-items a {
-                font-size: 1rem;
-                padding: 0.5rem 1rem;
-            }
-
-            .menu-items a:hover {
-                transform: translateY(-3px);
-            }
-
-            .logo-text {
-                font-size: 1.5rem;
-            }
-
-            .logo-text span {
-                font-size: 0.9rem;
-            }
-
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-
-            .hero p {
-                font-size: 1.5rem;
-            }
-
-            .footer-content {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .hero h1 {
-                font-size: 4rem;
-            }
-        }
-    </style>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    /* Chatbot Floating Container Styles */
+    #chatbot-container {
+      position: fixed;
+      bottom: 95px;
+      right: 25px;
+      width: 350px;
+      height: 500px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      border-radius: 12px;
+      overflow: hidden;
+      display: none;
+      z-index: 9998;
+    }
+  </style>
 </head>
+
 <body>
 
-    <!-- Static Header -->
-    <header class="static-header">
-        <div class="logo-container">
-            <img src="HRI LOGO.png" alt="Hope Rekindled Initiative Logo" class="logo-img">
-            <div class="logo-text">
-                Hope Rekindled Initiative
-                <span>Empowering Young People</span>
-            </div>
-        </div>
-        <nav>
-            <div class="hamburger-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="menu-items">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="programs.html">Programs</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="resources.html">Resources</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-<br>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-overlay">
-            <h1>Empowering Youth for a Healthier, Sustainable Future</h1>
-            <p>Join us in bridging gaps in health, equality, and climate action.</p>
-            <div class="hero-buttons">
-                <a href="join.html" class="btn-primary">Join Us</a>
-                <a href="donate.html" class="btn-secondary">Donate</a>
-                <a href="about.html" class="btn-tertiary">Learn More</a>
-            </div>
-        </div>
-    </section>
+<header class="static-header">
+  <div class="logo-container">
+    <img src="HRI LOGO.png" alt="Hope Rekindled Initiative Logo" class="logo-img" />
+    <div class="logo-text">
+      Hope Rekindled Initiative
+      <span>Empowering Young People</span>
+    </div>
+  </div>
+  <nav>
+    <div class="hamburger-menu">
+      <span></span><span></span><span></span>
+    </div>
+    <ul class="menu-items">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="programs.html">Programs</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
 
+<section class="hero">
+  <div class="hero-overlay">
+    <h1>Empowering Youth for a Healthier, Sustainable Future</h1>
+    <p>Join us in bridging gaps in health, equality, and climate action.</p>
+    <div class="hero-buttons">
+      <a href="join.html" class="btn-primary">Join Us</a>
+      <a href="donate.html" class="btn-secondary">Donate</a>
+      <a href="about.html" class="btn-tertiary">Learn More</a>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="logo-text">
-                Hope Rekindled Initiative
-                <span>Empowering Young People</span>
-            </div>
-            <div class="social-links">
-                <a href="https://www.instagram.com/hoperekindledinitiative?igsh=aHJ2MGtqNm9tcnU1" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://web.facebook.com/HopeRekindledInitiative?mibextid=ZbWKwL&_rdc=1&_rdr#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://x.com/HopeRekindledIn?t=5iMJ_Hfa80Mi2_PuGRzwcg&s=08" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            </div>
-        </div>
-<p>&copy; <span id="year"></span> Hope Rekindled Initiative. All rights reserved.</p>
+<footer>
+  <div class="footer-content">
+    <div class="logo-text">Hope Rekindled Initiative<span>Empowering Young People</span></div>
+    <div class="social-links">
+          <a href="https://www.instagram.com/hoperekindledinitiative?igsh=aHJ2MGtqNm9tcnU1" target="_blank" aria-label="Instagram"><i class="fab fa-instagram text-pink-500 hover:text-pink-600"></i></a>
+        <a href="https://web.facebook.com/HopeRekindledInitiative?mibextid=ZbWKwL&_rdc=1&_rdr#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook text-blue-600 hover:text-blue-700"></i></a>
+        <a href="https://www.linkedin.com/company/hoperekindledinitiative/posts/?feedView=all" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin text-blue-800 hover:text-blue-900"></i></a>
+<button id="chat-toggle">
+  💬
+</button>
 
-    
-   
- <!-- Chatbot Toggle Button -->
-<button id="chat-toggle" style="
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background-color: #1f6feb;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
+<!-- Chatbot Floating Container -->
+<div id="chatbot-container">
+  <iframe
+    src="https://www.chatbase.co/chatbot-iframe/wseuIJNNrQHKig7mfps1p"
+    width="100%"
+    height="100%"
+    style="border: none;"
+    frameborder="0"
+    allow="microphone; clipboard-write"
+  ></iframe>
+</div>
   width: 60px;
   height: 60px;
+  font-size: 28px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  font-size: 24px;
-  z-index: 9999;
-  cursor: pointer;
-">
+  cursor: pointer;">
   💬
 </button>
 
@@ -538,91 +469,14 @@
   ></iframe>
 </div>
 
-<!-- Show/Hide Script -->
+<!-- Show/Hide Chatbot Script -->
 <script>
   const toggle = document.getElementById('chat-toggle');
   const container = document.getElementById('chatbot-container');
 
   toggle.addEventListener('click', () => {
-    if (container.style.display === 'none' || container.style.display === '') {
-      container.style.display = 'block';
-    } else {
-      container.style.display = 'none';
-    }
+    container.style.display = container.style.display === 'block' ? 'none' : 'block';
   });
 </script>
 
-    </footer>
-
-    <script>
-        // Hamburger Menu Toggle
-        const hamburger = document.querySelector('.hamburger-menu');
-        const menuItems = document.querySelector('.menu-items');
-        
-        hamburger.addEventListener('click', function() {
-            this.classList.toggle('active');
-            menuItems.classList.toggle('active');
-            
-            // Toggle body overflow when menu is open
-            if (menuItems.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
-        });
-           document.getElementById('year').textContent = new Date().getFullYear();
-        // Close menu when clicking a link
-        document.querySelectorAll('.menu-items a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                menuItems.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.static-header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Animation on scroll
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.content, .hero-buttons, .hero p, .hero h1');
-            
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                
-                if (elementPosition < screenPosition) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }
-            });
-        }
-
-        // Run once on page load
-        window.addEventListener('load', animateOnScroll);
-        // Run on scroll
-        window.addEventListener('scroll', animateOnScroll);
-    </script>
-</body>
 </html>
